@@ -48,7 +48,7 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                     <div className='sub-title'>{this.props.carOwner.name}</div>
                     <div className="car-owner-image" >
                         <Avatar size={100}></Avatar>
-                        <FontAwesomeIcon className='phone-icon' icon={faPhone} size='2x'/>
+                        <FontAwesomeIcon className='phone-icon' icon={faPhone} size='3x'/>
                     </div>
                 </div>
                 <div className='page-body'>
@@ -62,16 +62,18 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                         {`Ask ${this.props.carOwner.name} to \n release you`}
                     </Row>
                     <Row>
-                        <Col span={12}>
+                        <Col span={2}/>
+                        <Col span={10}>
                             <a href={this.buildWhatsappUrl()}>
-                                <Avatar src={whatsapp}></Avatar>
+                                <Avatar size={80} src={whatsapp}></Avatar>
                             </a>
                         </Col>
-                        <Col span={12}>
+                        <Col span={10}>
                             <a href={this.buildSlackUrl()}>
-                                <Avatar size='large' src={slack}/>
+                                <Avatar size={80} src={slack}/>
                             </a>
                         </Col>
+                        <Col span={2}/>
                     </Row>
                 </div>
             </div>
