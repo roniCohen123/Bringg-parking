@@ -6,15 +6,10 @@ const GOOGLE_TOKEN_INFO_URL = "https://www.googleapis.com/oauth2/v3/tokeninfo";
 
 const Login: React.FunctionComponent = () => {
     const responseGoogle = (response: any) => {
-        console.log(response);
-
         const token = response.Zi.id_token;
-        console.log(token);
-        console.log(window.localStorage);
 
         axios.get(`${GOOGLE_TOKEN_INFO_URL}?id_token=${token}`).then(response => {
             const email = response.data.email;
-            console.log(email);
             window.localStorage.setItem('email', email);
         });
     };

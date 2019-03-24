@@ -7,6 +7,7 @@ import CarOwnerPageContainer from "./components/car-owner-page-container/car-own
 import {SelectValue} from "antd/lib/select";
 import {CarOwnerModel} from "./models/car-owner.model";
 import Login from "./components/login/login";
+
 interface Props {
 
 };
@@ -17,18 +18,22 @@ interface State {
 
 class App extends React.Component<Props, State> {
     render() {
-    return (
-      <div className="App">
-        <AppHeader/>
-          <HashRouter basename='/'>
-              <div className='app-body'>
-                  <Route path='/login' component={Login}/>
-                  <Route path='/search' component={SearchCarOwnerContainer}/>
-              </div>
-          </HashRouter>
-      </div>
-    );
-  }
+        const userLoggedIn = window.localStorage.email ? true : false;
+        return (
+            <div className="App">
+                <AppHeader/>
+                <HashRouter basename='/'>
+                    <div className='app-body'>
+                        <Switch>
+                            {userLoggedIn ? <Redirect exact path='/' to='/search'/> : <Redirect exact path='/' to='/login'/>}
+                            <Route exact path='/login' component={Login}/>
+                            <Route exact path='/search' component={SearchCarOwnerContainer}/>
+                        </Switch>
+                    </div>
+                </HashRouter>
+            </div>
+        );
+    }
 }
 
 export default App;
