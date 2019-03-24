@@ -3,8 +3,6 @@ import React from "react";
 import SearchCarOwner from "../search-car-owner/search-car-owner";
 import {SelectValue} from "antd/lib/select";
 import './search-car-owner-container';
-import {CarOwner} from "../../services/car-owner";
-import {Redirect} from "react-router";
 import CarOwnerPageContainer from "../car-owner-page-container/car-owner-page-container";
 import axios from 'axios';
 const CARS_URL = 'https://bringg-parking.herokuapp.com/cars';
@@ -25,7 +23,7 @@ export class SearchCarOwnerContainer extends React.Component<Props, State> {
     };
 
     onSelect = (value: SelectValue, option: Object): any => {
-        const currentCarOwner = CarOwner.getCarOwners().find(carOwner => carOwner.license === value);
+        const currentCarOwner = this.state.carOwners.find(carOwner => carOwner.license === value);
         if (currentCarOwner) {
             this.setState({...this.state, currentCarOwner});
         }
