@@ -6,6 +6,8 @@ import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import CarOwnerPageContainer from "./components/car-owner-page-container/car-owner-page-container";
 import {SelectValue} from "antd/lib/select";
 import {CarOwnerModel} from "./models/car-owner.model";
+import Login from "./components/login/login";
+
 
 const carOwners: CarOwnerModel[] = [{Name: "roni cohen", License: "12345678", phoneNumber: "0548130194"},
     {Name: "inbal galili", License: "5465876", phoneNumber: "0548130194"},
@@ -33,11 +35,11 @@ class App extends React.Component<Props, State> {
     return (
       <div className="App">
         <AppHeader/>
+          <Login/>
           <div className='app-body'>
               { this.state.currentCarOwner?
                   <CarOwnerPageContainer carOwner={this.state.currentCarOwner}/> :
                   <SearchCarOwnerContainer carOwners={carOwners} onSelect={this.onSelect}/>
-
               }
 
           </div>
