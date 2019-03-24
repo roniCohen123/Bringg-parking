@@ -106,7 +106,7 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                     <div className='sub-title'>{this.props.carOwner.name}</div>
                     <div className="car-owner-image" >
                         <Avatar size={100} src={this.state.avatar}></Avatar>
-                        <a href={"tel:" + this.normalizePhoneNumber()}>
+                        <a href={"tel:+" + this.normalizePhoneNumber()}>
                             <FontAwesomeIcon className='phone-icon' icon={faPhone} size='3x'/>
                         </a>
                     </div>
