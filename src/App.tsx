@@ -2,35 +2,42 @@ import React from 'react';
 import './App.css';
 import {SearchCarOwnerContainer} from "./components/search-car-owner-container/search-car-owner-container";
 import AppHeader from "./components/app-header/app-header";
-import {BrowserRouter, Switch, Route, Redirect, HashRouter} from 'react-router-dom';
-import CarOwnerPageContainer from "./components/car-owner-page-container/car-owner-page-container";
-import {SelectValue} from "antd/lib/select";
-import {CarOwnerModel} from "./models/car-owner.model";
+import {Switch, Route, HashRouter, Redirect} from 'react-router-dom';
 import Login from "./components/login/login";
+import AppFooter from "./components/app-footer/app-footer";
 
 interface Props {
-
 };
 
 interface State {
-    currentCarOwner: CarOwnerModel
+    userLoggedIn: boolean
 };
 
 class App extends React.Component<Props, State> {
+    state: State = {
+        userLoggedIn: window.localStorage.email? true: false
+    };
+
+    loginSucceeded = (): void => {
+        this.setState({ userLoggedIn: window.localStorage.email? true: false});
+    };
+
+    loginComponent = <Login loginSucceeded={this.loginSucceeded}/>;
+
     render() {
-        const userLoggedIn = window.localStorage.email ? true : false;
         return (
             <div className="App">
                 <AppHeader/>
                 <HashRouter basename='/'>
                     <div className='app-body'>
                         <Switch>
-                            {userLoggedIn ? <Redirect exact path='/' to='/search'/> : <Redirect exact path='/' to='/login'/>}
-                            <Route exact path='/login' component={Login}/>
+                            {this.state.userLoggedIn ? <Redirect exact path='/' to='/search'/> : <Redirect exact path='/' to='/login'/>}
+                            <Route exact path='/login' render={()=><Login/>}/>
                             <Route exact path='/search' component={SearchCarOwnerContainer}/>
                         </Switch>
                     </div>
                 </HashRouter>
+                <AppFooter/>
             </div>
         );
     }
