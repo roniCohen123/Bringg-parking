@@ -13,7 +13,7 @@ const AppFooter: React.FunctionComponent = () => {
             <FontAwesomeIcon className='phone-icon' icon={faPhone} size='3x'/>
             </a>
         </Col>
-        <Col span={16} className='content'>
+        <Col span={16} className='footer-content'>
             <div className={'question-text'}>{'Still no answer?...'}</div>
             <div className={'unleash-text'}>{'Unleash Moran!'}</div>
         </Col>
