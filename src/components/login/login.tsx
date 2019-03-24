@@ -6,8 +6,9 @@ const GOOGLE_TOKEN_INFO_URL = "https://www.googleapis.com/oauth2/v3/tokeninfo";
 
 const Login: React.FunctionComponent = () => {
     const responseGoogle = (response: any) => {
-        const token = response.hg.id_token;
         console.log(response);
+
+        const token = response.Zi.id_token;
         console.log(token);
         console.log(window.localStorage);
 
