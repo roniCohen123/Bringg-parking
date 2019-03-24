@@ -4,7 +4,6 @@
 
 .text-choose-container {
   border-radius: 90px;
-  padding-left: 50px;
   align-content: center;
   padding-top: 10px;
 }
@@ -50,4 +49,16 @@
 .content {
   font-size: 20px;
   font-weight: bold;
+}
+
+.go-back-icon {
+  float: left;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.phone-icon {
+  float: right;
+  margin-right: 5px;
+  cursor: pointer;
 }

@@ -23,7 +23,7 @@ export class SearchCarOwnerContainer extends React.Component<Props, State> {
     };
 
     onSelect = (value: SelectValue, option: Object): any => {
-        const currentCarOwner = this.state.carOwners.find(carOwner => carOwner.license === value);
+        const currentCarOwner = this.state.carOwners.find(carOwner => carOwner.license.replace(/-/g, '') === value);
         if (currentCarOwner) {
             this.setState({...this.state, currentCarOwner});
         }
@@ -35,11 +35,15 @@ export class SearchCarOwnerContainer extends React.Component<Props, State> {
         });
     }
 
+    resetSelection = (): void => {
+      this.setState({currentCarOwner: undefined});
+    };
+
     render() {
         return <div>
             {
                 this.state.currentCarOwner?
-                    <CarOwnerPageContainer carOwner={this.state.currentCarOwner}/> :
+                    <CarOwnerPageContainer carOwner={this.state.currentCarOwner} resetPage={this.resetSelection}/> :
                     <SearchCarOwner carOwners={this.state.carOwners} onSelect={this.onSelect}/>
             }
         </div>
