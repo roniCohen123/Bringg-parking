@@ -8,8 +8,6 @@ import {Redirect} from "react-router";
 import CarOwnerPageContainer from "../car-owner-page-container/car-owner-page-container";
 
 interface Props {
-    carOwners: CarOwnerModel[],
-    onSelect: (value: SelectValue, option: Object) => any
 }
 
 interface State {
@@ -33,7 +31,7 @@ export class SearchCarOwnerContainer extends React.Component<Props, State> {
             {
                 this.state.currentCarOwner?
                     <CarOwnerPageContainer carOwner={this.state.currentCarOwner}/> :
-                    <SearchCarOwner carOwners={this.props.carOwners} onSelect={this.onSelect}/>
+                    <SearchCarOwner carOwners={CarOwner.getCarOwners()} onSelect={this.onSelect}/>
             }
         </div>
     }

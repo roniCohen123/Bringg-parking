@@ -15,18 +15,7 @@ interface State {
     currentCarOwner: CarOwnerModel
 };
 
-const carOwners: CarOwnerModel[] = [{Name: "roni cohen", License: "12345678", phoneNumber: "0548130194"},
-    {Name: "inbal galili", License: "5465876", phoneNumber: "0548130194"},
-    {Name: "avi G", License: "3245678", phoneNumber: "0548130194"}];
-
 class App extends React.Component<Props, State> {
-    onSelect = (value: SelectValue, option: Object): any => {
-        const currentCarOwner = carOwners.find(carOwner => carOwner.License === value);
-        if (currentCarOwner) {
-            this.setState({currentCarOwner});
-        }
-    };
-
     render() {
     return (
       <div className="App">
@@ -34,9 +23,7 @@ class App extends React.Component<Props, State> {
           <HashRouter basename='/'>
               <div className='app-body'>
                   <Route path='/login' component={Login}/>
-                  <Route path='/search' render={(props) => (
-                      <SearchCarOwnerContainer carOwners={carOwners} onSelect={this.onSelect}/>
-                  )}/>
+                  <Route path='/search' component={SearchCarOwnerContainer}/>
               </div>
           </HashRouter>
       </div>
