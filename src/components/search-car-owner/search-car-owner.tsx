@@ -5,7 +5,9 @@ import { SelectValue} from "antd/lib/select";
 import {DataSourceItemType} from "antd/lib/auto-complete";
 import {isEmpty as _isEmpty} from 'lodash';
 
-const dataSource = ['Burns Bay Road', 'Downing Street', 'Wall Street'];
+const carOwners: CarOwnerModel[] = [{Name: "roni cohen", License: "12345678", phoneNumber: "0548130194"},
+    {Name: "inbal galili", License: "5465876", phoneNumber: "0548130194"},
+    {Name: "avi G", License: "3245678", phoneNumber: "0548130194"}];
 const PLACE_HOLDER = 'Insert car license';
 
 interface Props {

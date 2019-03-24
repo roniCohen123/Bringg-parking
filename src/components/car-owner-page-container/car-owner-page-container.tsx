@@ -1,7 +1,9 @@
 import {CarOwnerModel} from "../../models/car-owner.model";
 import React from "react";
 import './car-owner-page-container.scss';
-import {Row, Button, Avatar} from "antd";
+import {Row, Button, Avatar, Col} from "antd";
+import {Link} from "react-router-dom";
+
 
 interface Props {
     carOwner: CarOwnerModel
@@ -31,11 +33,24 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                     </div>
                     </div>
                 <div className='page-body'>
-                    <Row>
-                        <Button className={this.state.isBlocked? 'text-option-selected': 'text-option'} onClick={this.toggleBlocked}>{"Release me pls!"}</Button>
-                        <Button className={this.state.isBlocked? 'text-option': 'text-option-selected'} onClick={this.toggleBlocked}>{"FYI - I'm blocking you"}</Button>
+                    <Row className='text-choose-container'>
+                        <Col span={10} className={this.state.isBlocked? 'text-option-selected': 'text-option'} onClick={this.toggleBlocked}>{"Release me"}</Col>
+                        <Col span={10} className={this.state.isBlocked? 'text-option': 'text-option-selected'} onClick={this.toggleBlocked}>{"I'm blocking you"}</Col>
+                    </Row>
+                    <Row className='content'>
+                        {`Ask ${this.props.carOwner.Name} to \n release you`}
                     </Row>
                     <Row>
+                        <Col>
+                            <Link data-testid="link" to={''}>
+                                <i className="fab fa-whatsapp"></i>
+
+                            </Link>
+                        </Col>
+                        <Col>
+                            <Link data-testid="link" to={''}>
+                            </Link>
+                        </Col>
                     </Row>
                 </div>
             </div>

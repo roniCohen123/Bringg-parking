@@ -2,22 +2,34 @@
   text-align: center;
 };
 
-.text-option, .text-option-selected {
-  margin-top: 60px;
-  border: 1px solid black;
-  min-width: 150px;
-  max-width: 150px
-};
+.text-choose-container {
+  border-radius: 90px;
+  padding-left: 50px;
+  align-content: center;
+  padding-top: 10px;
+}
+
+.text-option-selected, .text-option {
+  margin-top: 50px;
+  height: 30px;
+}
+
+.text-option-selected {
+  background-color: orangered;
+  color: white;
+}
+
+.text-option {
+  background-color: white;
+  color: orangered;
+  border: 1px solid orangered;
+}
 
 .page-title {
   background-color: orangered;
   color: white;
   min-height: 150px;
   max-height: 150px;
-}
-
-.page-body {
-  background-color: whitesmoke;
 }
 
 .first-title {
@@ -33,4 +45,9 @@
 .car-owner-image {
   padding-top: 10px;
   border-radius: 50px;
+}
+
+.content {
+  font-size: 20px;
+  font-weight: bold;
 }
