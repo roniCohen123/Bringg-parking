@@ -8,8 +8,8 @@ import whatsapp from '../../icons/whatsapp-icon.png';
 import slack from '../../icons/slack-icon.png';
 import axios from 'axios';
 
-const BLOCKED_TEXT: string = "Release me";
-const BLOCKING_TEXT: string = "I'm blocking you";
+const BLOCKED_WHATSAPP_TEXT: string = "Release me";
+const BLOCKING_WHATSAPP_TEXT: string = "I'm blocking you";
 const SLACK_POST_URL: string = "https://bringg-parking.herokuapp.com";
 
 interface Props {
@@ -31,7 +31,7 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
     };
 
     buildWhatsappUrl = (): string => {
-        return `https://wa.me/${this.props.carOwner.phone}?text=${this.state.isBlocked? BLOCKED_TEXT: BLOCKING_TEXT}`;
+        return `https://wa.me/${this.props.carOwner.phone}?text=${this.state.isBlocked? BLOCKED_WHATSAPP_TEXT: BLOCKING_WHATSAPP_TEXT}`;
     };
 
     sendSlackRelease = () => {
@@ -75,12 +75,12 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                 <div className='page-body'>
                     <Row className='text-choose-container'>
                         <Col span={2}/>
-                        <Col span={10} className={this.state.isBlocked ? 'text-option-selected': 'text-option'} onClick={this.toggleBlocked}>{BLOCKED_TEXT}</Col>
-                        <Col span={10} className={this.state.isBlocked ? 'text-option': 'text-option-selected'} onClick={this.toggleBlocked}>{BLOCKING_TEXT}</Col>
+                        <Col span={10} className={this.state.isBlocked ? 'text-option-selected': 'text-option'} onClick={this.toggleBlocked}>{BLOCKED_WHATSAPP_TEXT}</Col>
+                        <Col span={10} className={this.state.isBlocked ? 'text-option': 'text-option-selected'} onClick={this.toggleBlocked}>{BLOCKING_WHATSAPP_TEXT}</Col>
                         <Col span={2}/>
                     </Row>
-                    <Row className='content'>
-                        {`Ask ${this.props.carOwner.name} to `} <br/> {'release you'}
+                    <Row className='content block-text'>
+                        {this.state.isBlocked ? `Ask ${this.props.carOwner.name} to release you` : `Let ${this.props.carOwner.name} know you're blocking them`}
                     </Row>
                     <Row>
                         <Col span={2}/>
