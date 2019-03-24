@@ -25,6 +25,7 @@ class App extends React.Component<Props, State> {
                 <HashRouter basename='/'>
                     <div className='app-body'>
                         <Switch>
+                            {userLoggedIn ? <Redirect exact path='/' to='/search'/> : <Redirect exact path='/' to='/login'/>}
                             <Route exact path='/login' component={Login}/>
                             <Route exact path='/search' component={SearchCarOwnerContainer}/>
                         </Switch>
