@@ -20,9 +20,8 @@ class App extends React.Component<Props, State> {
 
     loginSucceeded = (): void => {
         this.setState({ userLoggedIn: true});
+        this.render();
     };
-
-    loginComponent = <Login loginSucceeded={this.loginSucceeded}/>;
 
     render() {
         return (
@@ -30,7 +29,7 @@ class App extends React.Component<Props, State> {
                 <AppHeader/>
                 <HashRouter basename='/'>
                     <div className='app-body'>
-                        {this.state.userLoggedIn ? <Redirect to='/search'/> : <Redirect to='/login'/>}
+                        {this.state.userLoggedIn ? <Redirect to='/search'/> : <Redirect exact path='/' to='/login'/>}
                         <Switch>
                             <Route exact path='/login' render={()=><Login loginSucceeded={this.loginSucceeded}/>}/>
                             <Route exact path='/search' component={SearchCarOwnerContainer}/>

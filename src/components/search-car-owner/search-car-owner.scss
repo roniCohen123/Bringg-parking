@@ -1,3 +1,24 @@
 .search-car-owner {
   padding-top: 10px;
+  width: 400px;
+}
+
+.ant-select-dropdown-menu {
+  width: 400px;
+  min-height: 100px;
+}
+
+.ant-select-dropdown-menu-item {
+  color: orangered;
+}
+
+.ant-select-dropdown-menu-item:hover {
+  background-color: orangered;
+  color: white;
+}
+
+.search-icon {
+  float: right;
+  color: orangered;
+  margin-top: 5px;
 }
