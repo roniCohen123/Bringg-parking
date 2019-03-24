@@ -6,9 +6,11 @@ import {faArrowLeft, faPhone} from '@fortawesome/free-solid-svg-icons'
 import {Row, Avatar, Col} from "antd";
 import whatsapp from '../../icons/whatsapp-icon.png';
 import slack from '../../icons/slack-icon.png';
+import axios from 'axios';
 
 const BLOCKED_TEXT: string = "Release me";
 const BLOCKING_TEXT: string = "I'm blocking you";
+const SLACK_POST_URL: string = "https://bringg-parking.herokuapp.com";
 
 interface Props {
     carOwner: CarOwnerModel,
@@ -32,8 +34,27 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
         return `https://wa.me/${this.props.carOwner.phone}?text=${this.state.isBlocked? BLOCKED_TEXT: BLOCKING_TEXT}`;
     };
 
-    buildSlackUrl = (): string => {
-        return '';
+    sendSlackRelease = () => {
+        const data = {
+            blockingUserName: this.props.carOwner.slack,
+            blockedUserName: this.getOwnSlackUsername()
+        };
+
+        Promise.resolve(axios.post(`${SLACK_POST_URL}/release`, data));
+    };
+
+    sendSlackImBlocking = () => {
+        const data = {
+            blockingUserName: this.getOwnSlackUsername(),
+            blockedUserName: this.props.carOwner.slack
+        };
+
+        Promise.resolve(axios.post(`${SLACK_POST_URL}/block`, data));
+    };
+
+    getOwnSlackUsername() {
+        const email = window.localStorage.email;
+        return email.substr(0, email.indexOf('@'));
     };
 
     render() {
@@ -54,8 +75,8 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                 <div className='page-body'>
                     <Row className='text-choose-container'>
                         <Col span={2}/>
-                        <Col span={10} className={this.state.isBlocked? 'text-option-selected': 'text-option'} onClick={this.toggleBlocked}>{BLOCKED_TEXT}</Col>
-                        <Col span={10} className={this.state.isBlocked? 'text-option': 'text-option-selected'} onClick={this.toggleBlocked}>{BLOCKING_TEXT}</Col>
+                        <Col span={10} className={this.state.isBlocked ? 'text-option-selected': 'text-option'} onClick={this.toggleBlocked}>{BLOCKED_TEXT}</Col>
+                        <Col span={10} className={this.state.isBlocked ? 'text-option': 'text-option-selected'} onClick={this.toggleBlocked}>{BLOCKING_TEXT}</Col>
                         <Col span={2}/>
                     </Row>
                     <Row className='content'>
@@ -69,9 +90,9 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                             </a>
                         </Col>
                         <Col span={10}>
-                            <a href={this.buildSlackUrl()}>
+                            <div onClick={this.state.isBlocked ? this.sendSlackRelease : this.sendSlackImBlocking }>
                                 <Avatar size={80} src={slack}/>
-                            </a>
+                            </div>
                         </Col>
                         <Col span={2}/>
                     </Row>
