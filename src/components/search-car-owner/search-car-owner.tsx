@@ -5,8 +5,10 @@ import { SelectValue} from "antd/lib/select";
 import {DataSourceItemType} from "antd/lib/auto-complete";
 import {isEmpty as _isEmpty} from 'lodash';
 import './search-car-owner.scss';
+import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const PLACE_HOLDER = 'Insert car license';
+const PLACE_HOLDER = 'Type in License Plate';
 
 interface Props {
     carOwners: CarOwnerModel[],
@@ -30,13 +32,14 @@ const SearchCarOwner: React.FunctionComponent<Props> = (props: Props) => {
         <AutoComplete
             className='search-car-owner'
             dataSource={createOptions()}
-            placeholder={PLACE_HOLDER}
+            placeholder={<div>{PLACE_HOLDER}<FontAwesomeIcon className='search-icon' icon={faSearch}/></div>}
             filterOption={onFilter}
             onSelect={props.onSelect}
+            defaultOpen={true}
+            open={true}
         />
     );
 };
-
 SearchCarOwner.defaultProps = {
     carOwners: []
 };
