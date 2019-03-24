@@ -7,6 +7,8 @@ import {Row, Avatar, Col} from "antd";
 import whatsapp from '../../icons/whatsapp-icon.png';
 import slack from '../../icons/slack-icon.png';
 import axios from 'axios';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const BLOCKED_WHATSAPP_TEXT: string = "Release me";
 const BLOCKING_WHATSAPP_TEXT: string = "I'm blocking you";
@@ -34,13 +36,30 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
         return `https://wa.me/${this.normalizePhoneNumber()}?text=${this.state.isBlocked? BLOCKED_WHATSAPP_TEXT: BLOCKING_WHATSAPP_TEXT}`;
     };
 
+    sendSlack = () => {
+        confirmAlert({
+            title: 'Send Slack Message',
+            message: 'Are you sure?',
+            buttons: [
+                {
+                    label: 'Send',
+                    onClick: () => this.state.isBlocked ? this.sendSlackRelease() : this.sendSlackImBlocking()
+                },
+                {
+                    label: 'Cancel',
+                    onClick: () => {}
+                }
+            ]
+        });
+    };
+
     sendSlackRelease = () => {
         const data = {
             blockingUserName: this.props.carOwner.slack,
             blockedUserName: this.getOwnSlackUsername()
         };
 
-        Promise.resolve(axios.post(`${SLACK_POST_URL}/release`, data));
+        return Promise.resolve(axios.post(`${SLACK_POST_URL}/release`, data));
     };
 
     sendSlackImBlocking = () => {
@@ -96,7 +115,7 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                             </a>
                         </Col>
                         <Col span={10}>
-                            <div onClick={this.state.isBlocked ? this.sendSlackRelease : this.sendSlackImBlocking }>
+                            <div onClick={this.sendSlack}>
                                 <Avatar size={50} src={slack}/>
                             </div>
                         </Col>
