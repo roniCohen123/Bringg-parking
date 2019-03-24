@@ -10,8 +10,8 @@ import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-const BLOCKED_WHATSAPP_TEXT: string = "Release me";
-const BLOCKING_WHATSAPP_TEXT: string = "I'm blocking you";
+const BLOCKED_WHATSAPP_TEXT: string = "Please release me!";
+const BLOCKING_WHATSAPP_TEXT: string = "FYI - I'm blocking you today!";
 const SLACK_POST_URL: string = "https://bringg-parking.herokuapp.com";
 
 interface Props {
