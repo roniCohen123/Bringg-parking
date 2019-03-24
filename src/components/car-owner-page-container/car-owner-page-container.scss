@@ -3,13 +3,11 @@
 };
 
 .text-choose-container {
-  border-radius: 90px;
   align-content: center;
-  padding-top: 10px;
 }
 
 .text-option-selected, .text-option {
-  margin-top: 50px;
+  margin-top: 60px;
   height: 30px;
 }
 
@@ -27,19 +25,19 @@
 .page-title {
   background-color: orangered;
   color: white;
-  min-height: 150px;
-  max-height: 150px;
+  min-height: 120px;
+  max-height: 120px;
 }
 
 .first-title {
   padding-top: 10px;
-  font-size: 34px;
+  font-size: 20px;
   font-weight: bold;
   margin-right: 40px;
 }
 
 .sub-title {
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .car-owner-image {
@@ -49,7 +47,6 @@
 }
 
 .content {
-  padding-top: 10px;
   font-size: 20px;
   font-weight: bold;
 }
