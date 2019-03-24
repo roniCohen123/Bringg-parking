@@ -29,11 +29,15 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
     };
 
     buildWhatsappUrl = (): string => {
-        return `https://wa.me/${this.props.carOwner.phone}?text=${this.state.isBlocked? BLOCKED_TEXT: BLOCKING_TEXT}`;
+        return `https://wa.me/${this.normalizePhoneNumber()}?text=${this.state.isBlocked? BLOCKED_TEXT: BLOCKING_TEXT}`;
     };
 
     buildSlackUrl = (): string => {
         return '';
+    };
+
+    normalizePhoneNumber = ():string => {
+        return this.props.carOwner.phone.replace('0', '972');
     };
 
     render() {
@@ -48,7 +52,9 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                     <div className='sub-title'>{this.props.carOwner.name}</div>
                     <div className="car-owner-image" >
                         <Avatar size={100}></Avatar>
-                        <FontAwesomeIcon className='phone-icon' icon={faPhone} size='3x'/>
+                        <a href={"tel:" + this.normalizePhoneNumber()}>
+                            <FontAwesomeIcon className='phone-icon' icon={faPhone} size='3x'/>
+                        </a>
                     </div>
                 </div>
                 <div className='page-body'>
@@ -61,7 +67,7 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                     <Row className='content'>
                         {`Ask ${this.props.carOwner.name} to `} <br/> {'release you'}
                     </Row>
-                    <Row>
+                    <Row className='send-message-icons'>
                         <Col span={2}/>
                         <Col span={10}>
                             <a href={this.buildWhatsappUrl()}>
