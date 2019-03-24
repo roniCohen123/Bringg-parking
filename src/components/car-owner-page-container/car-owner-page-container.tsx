@@ -10,6 +10,8 @@ import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
+const BLOCKED_TEXT: string = "Release Me";
+const BLOCKING_TEXT: string = "I'm Blocking You";
 const BLOCKED_WHATSAPP_TEXT: string = "Please release me!";
 const BLOCKING_WHATSAPP_TEXT: string = "FYI - I'm blocking you today!";
 const SLACK_POST_URL: string = "https://bringg-parking.herokuapp.com";
@@ -21,11 +23,12 @@ interface Props {
 
 interface State {
   isBlocked: boolean;
+  avatar?: string;
 };
 
 class CarOwnerPageContainer extends React.Component<Props, State> {
     state: State = {
-        isBlocked: true
+        isBlocked: true,
     };
 
     toggleBlocked = (): void => {
@@ -33,7 +36,7 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
     };
 
     buildWhatsappUrl = (): string => {
-        return `https://wa.me/${this.normalizePhoneNumber()}?text=${this.state.isBlocked? BLOCKED_WHATSAPP_TEXT: BLOCKING_WHATSAPP_TEXT}`;
+        return `https://wa.me/${this.normalizePhoneNumber()}?text=${this.state.isBlocked ? BLOCKED_WHATSAPP_TEXT : BLOCKING_WHATSAPP_TEXT}`;
     };
 
     sendSlack = () => {
@@ -80,6 +83,17 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
         return this.props.carOwner.phone.replace('0', '972');
     };
 
+    componentDidMount(): void {
+        axios.post(`${SLACK_POST_URL}/profile_image`, { userName: this.props.carOwner.slack }).then(imageData => {
+            let avatar = 'default_user.png';
+            if (imageData.data.success === true && imageData.data.profile && imageData.data.profile.image_192) {
+                avatar = imageData.data.profile.image_192;
+            }
+
+            this.setState({ ...this.state, avatar: avatar });
+        });
+    }
+
     render() {
         return (
             <div className='car-owner-page'>
@@ -91,7 +105,7 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                         {this.props.carOwner.license}</div>
                     <div className='sub-title'>{this.props.carOwner.name}</div>
                     <div className="car-owner-image" >
-                        <Avatar size={100}></Avatar>
+                        <Avatar size={100} src={this.state.avatar}></Avatar>
                         <a href={"tel:" + this.normalizePhoneNumber()}>
                             <FontAwesomeIcon className='phone-icon' icon={faPhone} size='3x'/>
                         </a>
@@ -100,8 +114,8 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                 <div className='page-body'>
                     <Row className='text-choose-container'>
                         <Col span={2}/>
-                        <Col span={10} className={this.state.isBlocked ? 'text-option-selected': 'text-option'} onClick={this.toggleBlocked}>{BLOCKED_WHATSAPP_TEXT}</Col>
-                        <Col span={10} className={this.state.isBlocked ? 'text-option': 'text-option-selected'} onClick={this.toggleBlocked}>{BLOCKING_WHATSAPP_TEXT}</Col>
+                        <Col span={10} className={this.state.isBlocked ? 'text-option-selected': 'text-option'} onClick={this.toggleBlocked}>{BLOCKED_TEXT}</Col>
+                        <Col span={10} className={this.state.isBlocked ? 'text-option': 'text-option-selected'} onClick={this.toggleBlocked}>{BLOCKING_TEXT}</Col>
                         <Col span={2}/>
                     </Row>
                     <Row className='content block-text'>
