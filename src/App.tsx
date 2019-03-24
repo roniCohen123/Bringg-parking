@@ -7,29 +7,23 @@ import CarOwnerPageContainer from "./components/car-owner-page-container/car-own
 import {SelectValue} from "antd/lib/select";
 import {CarOwnerModel} from "./models/car-owner.model";
 import Login from "./components/login/login";
-
-
 interface Props {
 
 };
 
 interface State {
-    currentCarOwner: CarOwnerModel | undefined
+    currentCarOwner: CarOwnerModel
 };
 
 class App extends React.Component<Props, State> {
-    state: State = {
-        currentCarOwner: undefined
-    };
-
     render() {
     return (
       <div className="App">
         <AppHeader/>
           <HashRouter basename='/'>
               <div className='app-body'>
-                  <Route path='/search' component={SearchCarOwnerContainer}/>
                   <Route path='/login' component={Login}/>
+                  <Route path='/search' component={SearchCarOwnerContainer}/>
               </div>
           </HashRouter>
       </div>
