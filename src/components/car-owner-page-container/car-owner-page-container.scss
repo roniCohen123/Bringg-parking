@@ -8,7 +8,8 @@
 }
 
 .text-option-selected, .text-option {
-  margin-top: 60px;
+  padding-top: 5px;
+  margin-top: 100px;
   height: 30px;
 }
 
@@ -48,10 +49,17 @@
   margin-left: 60px;
 }
 
+.content-container {
+  content-align: center;
+  padding-left: 100px;
+}
+
 .content {
+  text-align: center;
   font-size: 20px;
   font-weight: bold;
-  padding-top: 10px;
+  padding-top: 50px;
+  width: 200px;
 }
 
 .go-back-icon {
@@ -69,10 +77,6 @@
 }
 
 .send-message-icons {
-  padding-top: 10px;
+  margin-top: 20px;
   padding-bottom: 10px;
-}
-
-.block-text {
-  word-wrap: break-word;
 }

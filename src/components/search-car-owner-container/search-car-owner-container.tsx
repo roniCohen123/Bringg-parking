@@ -25,13 +25,13 @@ export class SearchCarOwnerContainer extends React.Component<Props, State> {
     onSelect = (value: SelectValue, option: Object): any => {
         const currentCarOwner = this.state.carOwners.find(carOwner => carOwner.license.replace(/-/g, '') === value);
         if (currentCarOwner) {
-            this.setState({...this.state, currentCarOwner});
+            this.setState({currentCarOwner});
         }
     };
 
     componentWillMount(){
         axios.get(`${CARS_URL}`).then(response => {
-            this.setState({...this.state, carOwners: response.data});
+            this.setState({carOwners: response.data});
         });
     }
 

@@ -118,22 +118,24 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                         <Col span={10} className={this.state.isBlocked ? 'text-option': 'text-option-selected'} onClick={this.toggleBlocked}>{BLOCKING_TEXT}</Col>
                         <Col span={2}/>
                     </Row>
-                    <Row className='content block-text'>
-                        {this.state.isBlocked ? `Ask ${this.props.carOwner.name} to release you` : `Let ${this.props.carOwner.name} know you're blocking them`}
+                    <Row className='content-container'>
+                        <div className='content'>
+                            {this.state.isBlocked ? `Ask ${this.props.carOwner.name} to release you` : `Let ${this.props.carOwner.name} know you're blocking them`}
+                        </div>
                     </Row>
                     <Row className='send-message-icons'>
-                        <Col span={2}/>
-                        <Col span={10}>
+                        <Col span={7}/>
+                        <Col span={5}>
                             <a href={this.buildWhatsappUrl()}>
                                 <Avatar size={50} src={whatsapp}></Avatar>
                             </a>
                         </Col>
-                        <Col span={10}>
+                        <Col span={5}>
                             <div onClick={this.sendSlack}>
                                 <Avatar size={50} src={slack}/>
                             </div>
                         </Col>
-                        <Col span={2}/>
+                        <Col span={7}/>
                     </Row>
                 </div>
             </div>
