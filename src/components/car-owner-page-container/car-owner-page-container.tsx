@@ -31,7 +31,7 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
     };
 
     buildWhatsappUrl = (): string => {
-        return `https://wa.me/${this.normalizePhoneNumber()}?text=${this.state.isBlocked? BLOCKED_TEXT: BLOCKING_TEXT}`;
+        return `https://wa.me/${this.normalizePhoneNumber()}?text=${this.state.isBlocked? BLOCKED_WHATSAPP_TEXT: BLOCKING_WHATSAPP_TEXT}`;
     };
 
     sendSlackRelease = () => {
@@ -53,7 +53,7 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
     };
 
     getOwnSlackUsername() {
-        const email = window.localStorage.email;
+        const email = window.localStorage.email || '';
         return email.substr(0, email.indexOf('@'));
     };
 
