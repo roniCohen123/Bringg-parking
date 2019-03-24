@@ -13,6 +13,7 @@ const SLACK_POST_URL: string = "https://bringg-parking.herokuapp.com";
 
 
 const PLACE_HOLDER = 'Type in License Plate';
+const MORAN_WHATSAPP_TEXT = 'I need your help';
 
 interface Props {
     carOwners: CarOwnerModel[],
