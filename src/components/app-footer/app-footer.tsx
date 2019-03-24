@@ -18,7 +18,7 @@ const AppFooter: React.FunctionComponent = () => {
             <div className={'unleash-text'}>{'Unleash Moran!'}</div>
         </Col>
         <Col span={4} className='photo'>
-            <Avatar size={50}></Avatar>
+            <Avatar size={50} src='moran.jpg'></Avatar>
         </Col>
     </Row>)
         ;
