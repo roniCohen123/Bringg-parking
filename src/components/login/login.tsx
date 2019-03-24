@@ -5,7 +5,7 @@ import axios from 'axios';
 const GOOGLE_TOKEN_INFO_URL = "https://www.googleapis.com/oauth2/v3/tokeninfo";
 
 interface Props {
-    loginSucceeded?: () => void
+    loginSucceeded: () => void
 };
 
 const Login: React.FunctionComponent<Props> = (props) => {
@@ -15,7 +15,7 @@ const Login: React.FunctionComponent<Props> = (props) => {
         axios.get(`${GOOGLE_TOKEN_INFO_URL}?id_token=${token}`).then(response => {
             const email = response.data.email;
             window.localStorage.setItem('email', email);
-            //props.loginSucceeded();
+            props.loginSucceeded();
         });
     };
 
