@@ -20,7 +20,7 @@ class App extends React.Component<Props, State> {
 
     loginSucceeded = (): void => {
         this.setState({ userLoggedIn: true});
-        this.render();
+        window.location.reload();
     };
 
     render() {
@@ -30,10 +30,10 @@ class App extends React.Component<Props, State> {
                 <HashRouter basename='/'>
                     <div className='app-body'>
                         {this.state.userLoggedIn ? <Redirect to='/search'/> : <Redirect exact path='/' to='/login'/>}
-                        <Switch>
-                            <Route exact path='/login' render={()=><Login loginSucceeded={this.loginSucceeded}/>}/>
-                            <Route exact path='/search' component={SearchCarOwnerContainer}/>
-                        </Switch>
+                    <Switch>
+                        <Route exact path='/login' render={()=><Login loginSucceeded={this.loginSucceeded}/>}/>
+                        <Route exact path='/search' component={SearchCarOwnerContainer}/>
+                    </Switch>
                     </div>
                 </HashRouter>
                 <AppFooter/>
