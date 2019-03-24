@@ -1,9 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Bringg Parking",
+  "name": "Bringg Parking App",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "app-icon@3x.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
