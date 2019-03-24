@@ -69,8 +69,6 @@ const SearchCarOwner: React.FunctionComponent<Props> = (props: Props) => {
                 placeholder={<div>{PLACE_HOLDER}<FontAwesomeIcon className='search-icon' icon={faSearch}/></div>}
                 filterOption={onFilter}
                 onSelect={props.onSelect}
-                defaultOpen={true}
-                open={true}
             />
             <span className="no-parking" onClick={sendNoSpotsSlack}>No parking left? Let everyone know</span>
         </div>
