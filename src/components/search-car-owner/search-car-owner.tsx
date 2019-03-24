@@ -4,6 +4,7 @@ import React from "react";
 import { SelectValue} from "antd/lib/select";
 import {DataSourceItemType} from "antd/lib/auto-complete";
 import {isEmpty as _isEmpty} from 'lodash';
+import './search-car-owner.scss';
 
 const PLACE_HOLDER = 'Insert car license';
 
@@ -27,6 +28,7 @@ const SearchCarOwner: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <AutoComplete
+            className='search-car-owner'
             dataSource={createOptions()}
             placeholder={PLACE_HOLDER}
             filterOption={onFilter}

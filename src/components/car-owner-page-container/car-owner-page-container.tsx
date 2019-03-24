@@ -42,7 +42,7 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                 <div className='page-title'>
                     <div className='first-title'>
                         <span onClick={this.props.resetPage}>
-                            <FontAwesomeIcon className='go-back-icon' icon={faArrowLeft}/>
+                            <FontAwesomeIcon className='go-back-icon' icon={faArrowLeft} size='2x'/>
                         </span>
                         {this.props.carOwner.license}</div>
                     <div className='sub-title'>{this.props.carOwner.name}</div>
@@ -59,18 +59,18 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                         <Col span={2}/>
                     </Row>
                     <Row className='content'>
-                        {`Ask ${this.props.carOwner.name} to \n release you`}
+                        {`Ask ${this.props.carOwner.name} to `} <br/> {'release you'}
                     </Row>
                     <Row>
                         <Col span={2}/>
                         <Col span={10}>
                             <a href={this.buildWhatsappUrl()}>
-                                <Avatar size={80} src={whatsapp}></Avatar>
+                                <Avatar size={50} src={whatsapp}></Avatar>
                             </a>
                         </Col>
                         <Col span={10}>
                             <a href={this.buildSlackUrl()}>
-                                <Avatar size={80} src={slack}/>
+                                <Avatar size={50} src={slack}/>
                             </a>
                         </Col>
                         <Col span={2}/>
