@@ -26,8 +26,8 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
         return (
             <div className='car-owner-page'>
                 <div className='page-title'>
-                    <div className='first-title'>{this.props.carOwner.License}</div>
-                    <div className='sub-title'>{this.props.carOwner.Name}</div>
+                    <div className='first-title'>{this.props.carOwner.license}</div>
+                    <div className='sub-title'>{this.props.carOwner.name}</div>
                     <div className="car-owner-image" >
                         <Avatar size={100}></Avatar>
                     </div>
@@ -38,7 +38,7 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                         <Col span={10} className={this.state.isBlocked? 'text-option': 'text-option-selected'} onClick={this.toggleBlocked}>{"I'm blocking you"}</Col>
                     </Row>
                     <Row className='content'>
-                        {`Ask ${this.props.carOwner.Name} to \n release you`}
+                        {`Ask ${this.props.carOwner.name} to \n release you`}
                     </Row>
                     <Row>
                         <Col>

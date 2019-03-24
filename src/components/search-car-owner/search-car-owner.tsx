@@ -5,9 +5,6 @@ import { SelectValue} from "antd/lib/select";
 import {DataSourceItemType} from "antd/lib/auto-complete";
 import {isEmpty as _isEmpty} from 'lodash';
 
-const carOwners: CarOwnerModel[] = [{Name: "roni cohen", License: "12345678", phoneNumber: "0548130194"},
-    {Name: "inbal galili", License: "5465876", phoneNumber: "0548130194"},
-    {Name: "avi G", License: "3245678", phoneNumber: "0548130194"}];
 const PLACE_HOLDER = 'Insert car license';
 
 interface Props {
@@ -18,17 +15,13 @@ interface Props {
 const SearchCarOwner: React.FunctionComponent<Props> = (props: Props) => {
 
     const onFilter = (inputValue: string, option: any): boolean => {
-        return !_isEmpty(inputValue) && option.props.children && option.props.children.includes(inputValue);
+        return !_isEmpty(inputValue) && option.props.children && option.key.includes(inputValue);
     };
 
     const createOptions = (): DataSourceItemType[] => {
-        if (!props.carOwners) {
-            return [];
-        }
-
         return props.carOwners.map(carOwner => {return {
-            value: carOwner.License,
-            text: `${carOwner.License} - ${carOwner.Name}`
+            value: carOwner.license.replace(/-/g, ''),
+            text: `${carOwner.license} - ${carOwner.name}`
         }})
     };
 

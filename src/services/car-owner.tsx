@@ -1,8 +1,13 @@
 import {CarOwnerModel} from "../models/car-owner.model";
+import axios from 'axios';
 
-const carOwners: CarOwnerModel[] = [{Name: "roni cohen", License: "12345678", phoneNumber: "0548130194"},
-    {Name: "inbal galili", License: "5465876", phoneNumber: "0548130194"},
-    {Name: "avi G", License: "3245678", phoneNumber: "0548130194"}];
+const CARS_URL = 'https://bringg-parking.herokuapp.com/cars';
+
+var carOwners: CarOwnerModel[] = [];
+
+axios.get(`${CARS_URL}`).then(response => {
+    carOwners = response.data.cars;
+});
 
 export class CarOwner {
 

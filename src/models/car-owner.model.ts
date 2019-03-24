@@ -1,7 +1,9 @@
 export type CarOwnerModel = {
-    Name: string,
-    License: string,
-    phoneNumber: string,
-    Type?: string,
-    Color?: string
+    name: string,
+    license: string,
+    phone: string,
+    type?: string,
+    color?: string,
+    email: string,
+    slack: string
 };
