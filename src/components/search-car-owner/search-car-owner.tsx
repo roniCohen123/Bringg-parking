@@ -9,9 +9,8 @@ import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import {confirmAlert} from "react-confirm-alert";
+
 const SLACK_POST_URL: string = "https://bringg-parking.herokuapp.com";
-
-
 const PLACE_HOLDER = 'Type in License Plate';
 const MORAN_WHATSAPP_TEXT = 'I need your help';
 
@@ -26,13 +25,15 @@ const SearchCarOwner: React.FunctionComponent<Props> = (props: Props) => {
         return !_isEmpty(inputValue) && option.props.children && option.key.includes(inputValue);
     };
 
-    const createOptions = (): DataSourceItemType[] => {
-        return props.carOwners.map(carOwner => {
-            return {
-                value: carOwner.license.replace(/-/g, ''),
-                text: `${carOwner.license} - ${carOwner.name}`
-            }
-        })
+    const createOptions = (): any[] => {
+        const array = props.carOwners.map(carOwner => {
+            return (<AutoComplete.Option key={carOwner.license} value={carOwner.license}>
+                <span className='left-select'>{carOwner.license}</span>
+                <span className='right-select'>{carOwner.name} </span>
+            </AutoComplete.Option>)
+        });
+
+        return array;
     };
 
     const sendNoSpotsSlack = () => {
@@ -63,13 +64,13 @@ const SearchCarOwner: React.FunctionComponent<Props> = (props: Props) => {
 
     return (
         <div>
-
             <AutoComplete
                 className='search-car-owner'
                 dataSource={createOptions()}
                 placeholder={<div>{PLACE_HOLDER}<FontAwesomeIcon className='search-icon' icon={faSearch}/></div>}
                 filterOption={onFilter}
                 onSelect={props.onSelect}
+                optionLabelProp="value"
             />
             <span className="no-parking" onClick={sendNoSpotsSlack}>No parking left? Let everyone know</span>
         </div>

@@ -23,7 +23,7 @@ export class SearchCarOwnerContainer extends React.Component<Props, State> {
     };
 
     onSelect = (value: SelectValue, option: Object): any => {
-        const currentCarOwner = this.state.carOwners.find(carOwner => carOwner.license.replace(/-/g, '') === value);
+        const currentCarOwner = this.state.carOwners.find(carOwner => carOwner.license === value);
         if (currentCarOwner) {
             this.setState({currentCarOwner});
         }

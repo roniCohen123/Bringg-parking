@@ -4,7 +4,7 @@
 }
 
 .ant-select-dropdown-menu {
-  width: 400px;
+  width: 100%;
   min-height: 100px;
 }
 
@@ -22,4 +22,12 @@
   float: right;
   color: orangered;
   margin-top: 5px;
+}
+
+.left-select {
+  float: left;
+}
+
+.right-select {
+  float: right;
 }
