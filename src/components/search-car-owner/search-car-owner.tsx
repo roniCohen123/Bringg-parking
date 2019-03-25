@@ -22,12 +22,12 @@ interface Props {
 const SearchCarOwner: React.FunctionComponent<Props> = (props: Props) => {
 
     const onFilter = (inputValue: string, option: any): boolean => {
-        return !_isEmpty(inputValue) && option.props.children && option.key.includes(inputValue);
+        return !_isEmpty(inputValue) && option.key.includes(inputValue);
     };
 
     const createOptions = (): any[] => {
         const array = props.carOwners.map(carOwner => {
-            return (<AutoComplete.Option key={carOwner.license} value={carOwner.license}>
+            return (<AutoComplete.Option key={carOwner.license.replace(/-/g, '')} value={carOwner.license}>
                 <span className='left-select'>{carOwner.license}</span>
                 <span className='right-select'>{carOwner.name} </span>
             </AutoComplete.Option>)
