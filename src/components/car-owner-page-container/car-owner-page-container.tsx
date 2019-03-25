@@ -119,9 +119,14 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
                         <Col span={2}/>
                     </Row>
                     <Row className='content-container'>
-                        <div className='content'>
-                            {this.state.isBlocked ? `Ask ${this.props.carOwner.name} to release you` : `Let ${this.props.carOwner.name} know you're blocking them`}
-                        </div>
+                        { this.state.isBlocked ?
+                            <div className='content'>
+                                {`Ask ${this.props.carOwner.name}`} <br/> {`to release you`}
+                            </div> :
+                            <div className='content'>
+                                {`Let ${this.props.carOwner.name}`} <br/> {`know you're blocking them`}
+                            </div>
+                        }
                     </Row>
                     <Row className='send-message-icons'>
                         <Col span={7}/>

@@ -1,5 +1,6 @@
 .car-owner-page {
   text-align: center;
+  width: 100%
 };
 
 .text-choose-container {
@@ -35,18 +36,18 @@
   padding-top: 10px;
   font-size: 20px;
   font-weight: bold;
-  margin-right: 40px;
+  margin-right: 30px;
 }
 
 .sub-title {
   font-size: 14px;
-  margin-right: 40px;
+  margin-right: 30px;
 }
 
 .car-owner-image {
   padding-top: 10px;
   border-radius: 50px;
-  margin-left: 60px;
+  margin-left: 50px;
 }
 
 .content-container {
@@ -59,19 +60,18 @@
   font-size: 20px;
   font-weight: bold;
   padding-top: 50px;
-  width: 210px;
 }
 
 .go-back-icon {
   float: left;
-  margin-left: 20px;
+  margin-left: 5px;
   cursor: pointer;
 }
 
 .phone-icon {
   padding-top: 10px;
   float: right;
-  margin-right: 20px;
+  margin-right: 5px;
   cursor: pointer;
   color: white;
 }
