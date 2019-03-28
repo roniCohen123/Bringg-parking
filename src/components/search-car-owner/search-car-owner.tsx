@@ -12,7 +12,6 @@ import {confirmAlert} from "react-confirm-alert";
 
 const SLACK_POST_URL: string = "https://bringg-parking.herokuapp.com";
 const PLACE_HOLDER = 'Type in License Plate';
-const MORAN_WHATSAPP_TEXT = 'I need your help';
 
 interface Props {
     carOwners: CarOwnerModel[],
@@ -59,6 +58,8 @@ const SearchCarOwner: React.FunctionComponent<Props> = (props: Props) => {
 
     const getOwnSlackUsername = () => {
         const email = window.localStorage.email || '';
+        if (email === 'yael@bringg.com') return 'yaelalmog';
+
         return email.substr(0, email.indexOf('@'));
     };
 

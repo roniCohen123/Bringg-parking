@@ -76,6 +76,8 @@ class CarOwnerPageContainer extends React.Component<Props, State> {
 
     getOwnSlackUsername() {
         const email = window.localStorage.email || '';
+        if (email === 'yael@bringg.com') return 'yaelalmog';
+
         return email.substr(0, email.indexOf('@'));
     };
 
