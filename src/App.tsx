@@ -5,6 +5,7 @@ import AppHeader from "./components/app-header/app-header";
 import {Switch, Route, HashRouter, Redirect} from 'react-router-dom';
 import Login from "./components/login/login";
 import AppFooter from "./components/app-footer/app-footer";
+import ReactGA from 'react-ga';
 
 interface Props {
 };
@@ -12,6 +13,11 @@ interface Props {
 interface State {
     userLoggedIn: boolean
 };
+
+function initializeReactGA() {
+    ReactGA.initialize('UA-137196628-1');
+    ReactGA.pageview('/homepage');
+}
 
 class App extends React.Component<Props, State> {
     state: State = {
