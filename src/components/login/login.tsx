@@ -11,7 +11,7 @@ interface Props {
 
 const Login: React.FunctionComponent<Props> = (props) => {
     const responseGoogle = (response: any) => {
-        const token = response.Zi.id_token;
+        const token = response.tokenId;
 
         axios.get(`${GOOGLE_TOKEN_INFO_URL}?id_token=${token}`).then(response => {
             const email = response.data.email;
